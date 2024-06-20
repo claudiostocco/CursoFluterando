@@ -1,16 +1,14 @@
-abstract class Fibonacci {
+abstract interface class Fibonacci {
   List<int> generate([int numberOfTerms = 10]);
 }
 
 class FibonacciImpl implements Fibonacci {
   @override
   List<int> generate([int numberOfTerms = 10]) {
-    return List.generate(numberOfTerms, (index) {
-      if (index <= 2) {
-        return index;
-      } else {
-        return index + (index - 1);
-      }
-    });
+    List<int> result = [1, 1];
+    for (int i = 2; i < numberOfTerms; i++) {
+      result.add(result[i - 2] + result[i - 1]);
+    }
+    return result;
   }
 }
