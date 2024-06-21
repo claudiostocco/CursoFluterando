@@ -14,5 +14,7 @@ Solicita a digitação do nome, peso e altura, calcula o IMC e faz abalize.
 **2. Fibonacci**
 Solicita uma quantidade de termos e gera lista com a sequência de Fibonacci até esta posição.
 
+**3. Regra de três**
+
 ### Modulo 1
 Projetos destinados a fixar conceitos de Flutter.
