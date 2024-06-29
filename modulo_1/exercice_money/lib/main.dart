@@ -11,6 +11,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Teste();
 
+    return const MaterialApp(
+      home: WithScafold(),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Titulo'),
@@ -27,25 +31,37 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     void onTap() {
       print('Click');
-      List<Widget> componnentsTree = [];
+
       var localContext = context;
-      while (localContext.mounted) {
-        componnentsTree.add(localContext.widget);
-        var widgetName = localContext.widget.toString();
-        print('widget: ${widgetName}');
-        var ancestor = localContext.findAncestorWidgetOfExactType<Widget>();
-        print('ancestor: ${ancestor.toString()}');
+      // localContext.visitAncestorElements(
+      //   (element) {
+      //     var widgetName = element.widget.toString();
+      //     print('Name: $widgetName');
+      //     return widgetName != '[root]';
+      //   },
+      // );
 
-        if (widgetName == '[root]') {
-          break;
+      List<Widget> componnentsTree = [];
+
+      for (int i = 0; i < 10; i++) {
+        if (localContext.mounted) {
+          componnentsTree.add(localContext.widget);
+          var widgetName = localContext.widget.toString();
+          print('widget: ${widgetName}');
+          var ancestor = localContext.findAncestorWidgetOfExactType<Shower>();
+          print('ancestor: ${ancestor.toString()}');
+
+          // if (widgetName == '[root]') {
+          //   break;
+          // }
+
+          localContext.visitAncestorElements(
+            (element) {
+              localContext = element;
+              return widgetName == '[root]';
+            },
+          );
         }
-
-        localContext.visitAncestorElements(
-          (element) {
-            localContext = element;
-            return true;
-          },
-        );
       }
     }
 
@@ -98,6 +114,23 @@ class Teste extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Shower(),
+    );
+  }
+}
+
+class WithScafold extends StatelessWidget {
+  const WithScafold({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          color: Colors.black,
+        ),
+      ),
     );
   }
 }
