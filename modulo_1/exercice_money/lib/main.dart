@@ -9,17 +9,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Teste();
-
-    return const MaterialApp(
-      home: WithScafold(),
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Titulo'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Titulo'),
+        ),
+        body: const Home(),
       ),
-      body: const Home(),
     );
   }
 }
