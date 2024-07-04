@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class Person {
   final String id;
@@ -7,7 +7,8 @@ class Person {
   Person({required this.id, required this.name});
 
   factory Person.newPerson({required String name}) {
-    String uuId = UniqueKey().toString();
+    Uuid uuid = const Uuid();
+    String uuId = uuid.v8();
     return Person(id: uuId, name: name);
   }
 }
